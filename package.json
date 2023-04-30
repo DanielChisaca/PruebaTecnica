@@ -1,0 +1,23 @@
+{
+  "name": "pruebatecnicadv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DanielChisaca/PruebaTecnicaDV.git"
+  },
+  "author": "Daniel Chisaca Rubio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielChisaca/PruebaTecnicaDV/issues"
+  },
+  "homepage": "https://github.com/DanielChisaca/PruebaTecnicaDV#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0"
+  }
+}
