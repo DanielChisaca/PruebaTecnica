@@ -33,6 +33,18 @@ Swagger UI es una herramienta para generar documentación interactiva para una A
 
 La aplicación esta creada en node js.
 
+Para instalar npm, se debe seguir los siguientes pasos:
+
+    Descarga e instala Node.js desde la página oficial: https://nodejs.org
+
+    Una vez instalado Node.js, npm debería estar disponible en tu sistema. Para verificar si está instalado, puedes abrir la terminal (en Windows, el símbolo del sistema o PowerShell) y escribir el siguiente comando:
+
+    npm -v
+
+    Si npm está instalado correctamente, deberías ver la versión de npm que está instalada en tu sistema.
+
+Si npm no está instalado, asegúrate de haber instalado Node.js correctamente y vuelve a intentar. Si sigues teniendo problemas, puedes buscar más información en la documentación oficial de Node.js o en la comunidad de desarrolladores de Node.js.
+
 Para instalar las dependencias que se encuentran en el archivo package.json, puedes seguir los siguientes pasos:
 
     Abre una terminal en la raíz del proyecto.
@@ -40,16 +52,18 @@ Para instalar las dependencias que se encuentran en el archivo package.json, pue
 
 Este comando instalará todas las dependencias que se encuentran en el archivo package.json. Las dependencias se descargarán desde el registro de paquetes de npm y se instalarán en el directorio node_modules en la raíz del proyecto.
 
-Es importante mencionar que debes tener instalado Node.js en tu computadora para poder ejecutar este comando. Si no lo tienes instalado, puedes descargarlo e instalarlo desde la página oficial: https://nodejs.org/es/
-
-
 # Parámetros de configuración:
 
-La url base es http://localhost:3000/ se debe ejecutar primero el api localhost:3000/api/login
+La url base es http://localhost:3001/ se debe ejecutar primero el api localhost:3000/api/login
 
+Para poder ver el swagger se ingresa a la siguiente url http://localhost:3001/api-docs/
 
 
 # Instrucciones de ejecución y prueba:
+
+Para ejecutar el proyecto nos ubicamos en la carpeta del proyecto y colocamos el siguiente comando:
+
+nodemon src/app.js
 
 1. Api generación del token.
 
@@ -58,7 +72,7 @@ La url base es http://localhost:3000/ se debe ejecutar primero el api localhost:
 * Clic en Raw test
 * Pegamos el siguientee curl
 
-curl --location 'localhost:3000/api/login' \
+curl --location 'localhost:3001/api/login' \
 --header 'Content-Type: application/json' \
 --data '{
   "username": "user1",
@@ -84,7 +98,7 @@ La aplicación no valida el token ya que no se genero una conexión a la base de
 * Clic en Raw test
 * Pegamos el siguiente curl:
 
-curl --location 'http://localhost:3000/api/products' \
+curl --location 'http://localhost:3001/api/products' \
 --header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODIzNTUzfQ.A4hIOWQBGErVuUKONBJn95zdkjUZk49gkrP-Rt_xe4U}'
 
 * Damos clic en Send y se genera el response.
@@ -96,7 +110,7 @@ curl --location 'http://localhost:3000/api/products' \
 * Clic en Raw test
 * Pegamos el siguiente curl:
 
-curl --location 'localhost:3000/api/products/' \
+curl --location 'localhost:3001/api/products/' \
 --header 'Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODA1MzU2fQ.pJ03RGnrvYiiAghTAgcgBnwFAjoeI6yJLer0Nt6KWik"' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -116,7 +130,7 @@ curl --location 'localhost:3000/api/products/' \
 * Clic en Raw test
 * Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
 
-curl --location 'http://localhost:3000/api/products/1682825585868' \
+curl --location 'http://localhost:3001/api/products/1682825585868' \
 --header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODAyNzMxfQ.HNv4UaV3lHpFV0Rh6vqA0XDAMDIr8Z1uEDfI5vWmJWo}'
 
 * Damos clic en Send y se genera el response.
@@ -129,7 +143,7 @@ curl --location 'http://localhost:3000/api/products/1682825585868' \
 * Clic en Raw test
 * Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
 
-curl --location --request PUT 'http://localhost:3000/api/products/1682810688880' \
+curl --location --request PUT 'http://localhost:3001/api/products/1682810688880' \
 --header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODA0NzUyfQ.r7x3vxQ0ATmvLDtFlkYK7LHLWF3Qmp7WMXH_XYKtSTo}' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -150,7 +164,7 @@ curl --location --request PUT 'http://localhost:3000/api/products/1682810688880'
 * Clic en Raw test
 * Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
 
-curl --location --request DELETE 'http://localhost:3000/api/products/1682826517995' \
+curl --location --request DELETE 'http://localhost:3001/api/products/1682826517995' \
 --header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODAyNzMxfQ.HNv4UaV3lHpFV0Rh6vqA0XDAMDIr8Z1uEDfI5vWmJWo}'
 
 * Damos clic en Send y se genera el response.
