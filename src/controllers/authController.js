@@ -7,7 +7,6 @@ const validUsers = [
 exports.authenticateUser = (req, res) => {
   const { username, password } = req.body;
 
-  // Buscamos el usuario y comprobamos si la contraseña es correcta
   const user = validUsers.find(
     (u) => u.username === username && u.password === password
   );
