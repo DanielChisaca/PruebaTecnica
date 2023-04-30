@@ -1,0 +1,352 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Store",
+      "version": "1.0.0",
+      "description": "Swagger para los productos"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Servidor local de desarrollo"
+      }
+    ],
+    "paths": {
+      "/api/login": {
+        "post": {
+          "summary": "Crear token",
+          "description": "Crea un token de seguridad",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Token exitoso",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Token"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Petición incorrecta"
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "500": {
+              "description": "Error del servidor"
+            }
+          },
+          "tags": [
+            "Token"
+          ]
+        }
+      },
+      "/api/products": {
+        "get": {
+          "summary": "Lista todos los productos",
+          "description": "Lista todos los productos creados",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Token",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de productos",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Petición incorrecta"
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "500": {
+              "description": "Error del servidor"
+            }
+          },
+          "tags": [
+            "Productos"
+          ]
+        },
+        "post": {
+          "summary": "Crear un nuevo producto",
+          "description": "Crea un nuevo producto en el sistema",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Token",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Producto creado correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Petición incorrecta"
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "500": {
+              "description": "Error del servidor"
+            }
+          },
+          "tags": [
+            "Productos"
+          ]
+        }
+      },
+      "/api/products/id": {
+        "get": {
+          "summary": "Lista todos los productos",
+          "description": "Lista todos los productos creados por id",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "Token",
+              "required": false,
+              "schema": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 100
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de productos",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Products"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Petición incorrecta"
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "500": {
+              "description": "Error del servidor"
+            }
+          },
+          "tags": [
+            "Productos"
+          ]
+        },
+        "put": {
+            "summary": "Actualiza el producto",
+            "description": "Actualiza el producto dependiendo el tipo y el id",
+            "parameters": [
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  }
+                }
+              ],
+            "responses": {
+              "200": {
+                "description": "Lista de productos",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Products"
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Petición incorrecta"
+              },
+              "401": {
+                "description": "No autorizado"
+              },
+              "500": {
+                "description": "Error del servidor"
+              }
+            },
+            "tags": [
+              "Productos"
+            ]
+          },
+          "delete": {
+            "summary": "Elimina los productos",
+            "description": "Elimina cada producto por id",
+            "parameters": [
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Token",
+                  "required": false,
+                  "schema": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  }
+                }
+              ],
+            "responses": {
+              "200": {
+                "description": "Lista de productos",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Petición incorrecta"
+              },
+              "401": {
+                "description": "No autorizado"
+              },
+              "500": {
+                "description": "Error del servidor"
+              }
+            },
+            "tags": [
+              "Productos"
+            ]
+          }
+        }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "username",
+            "password"
+          ]
+        },
+        "Token": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            }
+          },
+        "Products": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "price",
+          "quantity"
+      ]
+
+    },
+    "Product": {
+        "type": "object",
+        "properties": {
+          "mesagge": {
+            "type": "string"
+          }
+        }
+            }
+        }
+    }
+}
+
+  
