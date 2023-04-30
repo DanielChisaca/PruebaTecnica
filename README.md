@@ -63,6 +63,7 @@ Para poder ver el swagger se ingresa a la siguiente url http://localhost:3001/ap
 
 Para ejecutar el proyecto nos ubicamos en la carpeta del proyecto y colocamos el siguiente comando:
 
+cd Back
 nodemon src/app.js
 
 1. Api generación del token.
