@@ -24,3 +24,134 @@ La librería jsonwebtoken es muy utilizada en aplicaciones web para autenticar a
 * *Nodemon*
 
 Nodemon es una herramienta de línea de comandos para Node.js que se utiliza para reiniciar automáticamente la aplicación cuando se detectan cambios en el código fuente. Esto facilita el proceso de desarrollo de aplicaciones y permite a los desarrolladores ver rápidamente los cambios que han hecho sin tener que reiniciar manualmente la aplicación.
+
+* *swagger-ui-express*
+
+Swagger UI es una herramienta para generar documentación interactiva para una API que se ha documentado usando el estándar OpenAPI. Swagger UI Express es una biblioteca de middleware para Node.js que proporciona una manera fácil de servir la documentación generada por Swagger UI a través de una aplicación Express.
+
+# Entorno de ejecución:
+
+La aplicación esta creada en node js.
+
+Para instalar las dependencias que se encuentran en el archivo package.json, puedes seguir los siguientes pasos:
+
+    Abre una terminal en la raíz del proyecto.
+    Ejecuta el comando npm install.
+
+Este comando instalará todas las dependencias que se encuentran en el archivo package.json. Las dependencias se descargarán desde el registro de paquetes de npm y se instalarán en el directorio node_modules en la raíz del proyecto.
+
+Es importante mencionar que debes tener instalado Node.js en tu computadora para poder ejecutar este comando. Si no lo tienes instalado, puedes descargarlo e instalarlo desde la página oficial: https://nodejs.org/es/
+
+
+# Parámetros de configuración:
+
+La url base es http://localhost:3000/ se debe ejecutar primero el api localhost:3000/api/login
+
+
+
+# Instrucciones de ejecución y prueba:
+
+1. Api generación del token.
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Pegamos el siguientee curl
+
+curl --location 'localhost:3000/api/login' \
+--header 'Content-Type: application/json' \
+--data '{
+  "username": "user1",
+  "password": "pass1"
+}
+'
+
+* Damos clic en Send y se genera el response.
+
+Se coloca el username y la password autorizada, el sistema valida los datos. 
+
+Esta genera un token se copia y se pega en los headers se da clic en key-value Edit y se coloca lo siguiente.
+
+Authorization:Bearer {token}
+
+La aplicación no valida el token ya que no se genero una conexión a la base de datos, si se genera la conexión se coloca la validación del tiempo.
+
+
+2. Api Busqueda de productos.
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Pegamos el siguiente curl:
+
+curl --location 'http://localhost:3000/api/products' \
+--header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODIzNTUzfQ.A4hIOWQBGErVuUKONBJn95zdkjUZk49gkrP-Rt_xe4U}'
+
+* Damos clic en Send y se genera el response.
+
+3. Api Creación de producto
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Pegamos el siguiente curl:
+
+curl --location 'localhost:3000/api/products/' \
+--header 'Authorization: Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODA1MzU2fQ.pJ03RGnrvYiiAghTAgcgBnwFAjoeI6yJLer0Nt6KWik"' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Producto de prueba",
+    "description": "Este es un producto de prueba",
+    "price": 10.99,
+    "quantity": 100
+}
+'
+
+* Damos clic en Send y se genera el response.
+
+4. Api Busqueda de productos por id
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
+
+curl --location 'http://localhost:3000/api/products/1682825585868' \
+--header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODAyNzMxfQ.HNv4UaV3lHpFV0Rh6vqA0XDAMDIr8Z1uEDfI5vWmJWo}'
+
+* Damos clic en Send y se genera el response.
+* Nota: El id se debe cambiar por el que se genero en el Api Creación de producto ya que no hay base de datos y se guarda en memoria
+
+5. Api Edición del producto por id
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
+
+curl --location --request PUT 'http://localhost:3000/api/products/1682810688880' \
+--header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODA0NzUyfQ.r7x3vxQ0ATmvLDtFlkYK7LHLWF3Qmp7WMXH_XYKtSTo}' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Producto de prueba",
+    "description": "Este es un producto de prueba",
+    "price": 10.99,
+    "quantity": 100
+}
+'
+
+* Damos clic en Send y se genera el response.
+* Nota: El id se debe cambiar por el que se genero en el Api Creación de producto ya que no hay base de datos y se guarda en memoria
+
+6. Api Eliminación del producto por id
+
+* Abrimos postman.
+* Damos clic en importar
+* Clic en Raw test
+* Editamos el siguiente curl, en la url después de products/ colocamos el id anterior:
+
+curl --location --request DELETE 'http://localhost:3000/api/products/1682826517995' \
+--header 'Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNjgyODAyNzMxfQ.HNv4UaV3lHpFV0Rh6vqA0XDAMDIr8Z1uEDfI5vWmJWo}'
+
+* Damos clic en Send y se genera el response.
+* Nota: El id se debe cambiar por el que se genero en el Api Creación de producto ya que no hay base de datos y se guarda en memoria
